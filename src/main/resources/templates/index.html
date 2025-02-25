@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+    <script src="https://js.sentry-cdn.com/8b499cc29bbbefcff2f492ab5ae24651.min.js"
+            crossorigin="anonymous">
+    </script>
+    <script>
+        Sentry.onLoad(function() {
+            Sentry.init({
+                // integrations: [
+                //     new Sentry.Replay({
+                //         // Replay configuration options
+                //     }),
+                // ],
+                replaysSessionSampleRate: 1.0,
+                replaysOnErrorSampleRate: 1.0,
+            });
+        });
+        myUndefinedFunction();
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            font-size: 3em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <!-- A button to trigger a test error -->
+    <button id="test-error">Trigger Test Error</button>
+    <script>
+        const button = document.getElementById('test-error');
+        button.addEventListener('click', () => {
+            throw new Error('This is a test error');
+        });
+    </script>
+</body>
+</html>
